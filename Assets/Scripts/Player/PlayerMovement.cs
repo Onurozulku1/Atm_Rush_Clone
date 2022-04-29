@@ -13,15 +13,22 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    Vector3 moveX;
+    Vector3 moveZ;
     private void FixedUpdate()
     {
         if (Input.touchCount > 0)
         {
             touch = Input.GetTouch(0);
-            if (touch.deltaPosition.x == 0)
-                return;
 
-            movementVector = 0.05f * speed * (Vector3.forward + Vector3.right * Mathf.Sign(touch.deltaPosition.x));
+            if (touch.deltaPosition.x != 0)
+                moveX = 0.02f * Mathf.Sign(touch.deltaPosition.x) * speed * Vector3.right;
+            else
+                moveX = Vector3.zero;
+
+            moveZ = 0.05f * speed * Vector3.forward;
+
+            movementVector = moveX + moveZ;
             transform.Translate(movementVector);
             Vector3 clampedPosition = transform.position;
             clampedPosition.x = Mathf.Clamp(clampedPosition.x, -GameManager.instance.groundBoundaries, GameManager.instance.groundBoundaries);

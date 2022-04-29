@@ -57,7 +57,7 @@ public class WalletManager : MonoBehaviour
             wallet.Remove(wallet[i]);
 
         }
-
+        UiManager.instance.bankText.text = storedMoney.ToString();
     }
 
 }

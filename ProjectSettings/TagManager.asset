@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ground
   - Collectable
+  - Obstacle
+  - Upgrader
+  - Bank
   layers:
   - Default
   - TransparentFX

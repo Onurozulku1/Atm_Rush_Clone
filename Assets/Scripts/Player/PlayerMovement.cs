@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
             touch = Input.GetTouch(0);
 
             if (touch.deltaPosition.x != 0)
-                moveX = 0.02f * Mathf.Sign(touch.deltaPosition.x) * speed * Vector3.right;
+                moveX = 0.04f * Mathf.Sign(touch.deltaPosition.x) * speed * Vector3.right;
             else
                 moveX = Vector3.zero;
 

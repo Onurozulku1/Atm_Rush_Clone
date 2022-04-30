@@ -21,18 +21,18 @@ public class PlayerMovement : MonoBehaviour
         {
             touch = Input.GetTouch(0);
 
-            if (touch.deltaPosition.x != 0)
-                moveX = 0.04f * Mathf.Sign(touch.deltaPosition.x) * speed * Vector3.right;
-            else
-                moveX = Vector3.zero;
+            if (touch.phase == TouchPhase.Moved)
+            {
+                moveX = 0.03f * Mathf.Sign(touch.deltaPosition.x) * speed * Vector3.right;
+                moveZ = 0.05f * speed * Vector3.forward;
 
-            moveZ = 0.05f * speed * Vector3.forward;
-
-            movementVector = moveX + moveZ;
-            transform.Translate(movementVector);
-            Vector3 clampedPosition = transform.position;
-            clampedPosition.x = Mathf.Clamp(clampedPosition.x, -GameManager.instance.groundBoundaries, GameManager.instance.groundBoundaries);
-            transform.position = clampedPosition;
+                movementVector = moveX + moveZ;
+                transform.Translate(movementVector);
+                Vector3 clampedPosition = transform.position;
+                clampedPosition.x = Mathf.Clamp(clampedPosition.x, -GameManager.instance.groundBoundaries, GameManager.instance.groundBoundaries);
+                transform.position = clampedPosition;
+            }
+            
 
         }
         else

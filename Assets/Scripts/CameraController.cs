@@ -15,6 +15,10 @@ public class CameraController : MonoBehaviour
         playerGap = transform.position - player.position;
     }
 
+    private void Update()
+    {
+        
+    }
     private void FixedUpdate()
     {
         transform.position = Vector3.Lerp(transform.position, player.position + playerGap, 0.2f);

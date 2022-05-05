@@ -28,10 +28,19 @@ public class CollectableMovement : MonoBehaviour
     private void MoveCollectable()
     {
         objIndex = WalletManager.instance.wallet.IndexOf(gameObject) + 1;
+        Transform leadObject;
+        if (objIndex > 1)
+        {
+            leadObject = WalletManager.instance.wallet[objIndex - 2].transform;
+        }
+        else
+        {
+            leadObject = WalletManager.instance.transform;
+        }
 
         if (WalletManager.instance.wallet.Contains(gameObject))
         {
-            posX = Mathf.Lerp(posX, WalletManager.instance.transform.position.x, 0.1f + (0.1f / Mathf.Pow(objIndex, 4)));
+            posX = Mathf.Lerp(posX, leadObject.position.x, 0.5f);
 
             posZ = WalletManager.instance.transform.position.z + (WalletManager.instance.moneySpacing * (1 + objIndex));
         }

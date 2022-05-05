@@ -7,6 +7,8 @@ public class Collectable : MonoBehaviour
     public int stage = 0;
     public bool isCollected = false;
 
+    public bool gameEnding = false;
+    private Transform finishTransform;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Collectable") && !collision.gameObject.GetComponent<Collectable>().isCollected)
@@ -18,10 +20,11 @@ public class Collectable : MonoBehaviour
             }
             
         }
-
-        
     }
-
+    private void Update()
+    {
+        EndingAnimation();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Obstacle") && isCollected)
@@ -38,6 +41,12 @@ public class Collectable : MonoBehaviour
         {
             WalletManager.instance.Deposit(this);
         }
+        
+        if (other.gameObject.CompareTag("Finish") && isCollected)
+        {
+            finishTransform = other.transform;
+            Finish();
+        }
     }
 
 
@@ -47,6 +56,22 @@ public class Collectable : MonoBehaviour
         {
             stage++;
             GetComponent<MeshRenderer>().material = WalletManager.instance.stageMaterials[stage - 1];
+        }
+    }
+
+    private void Finish()
+    {
+        gameEnding = true;
+        WalletManager.instance.wallet.Remove(gameObject);
+        transform.position = new Vector3(0, transform.position.y, finishTransform.position.z);
+
+    }
+
+    private void EndingAnimation()
+    {
+        if (finishTransform != null && gameEnding)
+        {
+            transform.Translate(Vector3.left * Time.deltaTime * 20);
         }
     }
 }

@@ -22,6 +22,9 @@ public class CollectableMovement : MonoBehaviour
         if (!collectable.isCollected)
             return;
 
+        if (collectable.gameEnding)
+            return;
+
         MoveCollectable();
     }
 

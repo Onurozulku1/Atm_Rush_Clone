@@ -15,7 +15,25 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveX;
     Vector3 moveZ;
 
+    bool playable = true;
+
     private void FixedUpdate()
+    {
+        if (!playable)
+            return;
+
+        PlayerInput();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Finish"))
+        {
+            playable = false;
+        }
+    }
+
+    private void PlayerInput()
     {
         if (Input.touchCount > 0)
         {

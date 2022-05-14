@@ -1,2 +1,3 @@
 # Atm_Rush_Clone
- Clone of the AtmRush game
+--
+Atm Rush prototype that developed mechanics only

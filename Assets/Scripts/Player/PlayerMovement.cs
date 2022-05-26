@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 2;
+    public float speed = 30;
     private Vector3 movementVector;
     Touch touch;
 

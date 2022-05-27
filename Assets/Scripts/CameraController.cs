@@ -17,10 +17,19 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        
     }
     private void FixedUpdate()
     {
         transform.position = Vector3.Lerp(transform.position, player.position + playerGap, 0.2f);
+    }
+
+    private void OnEnable()
+    {
+        GameManager.LevelEnding += () => playerGap += new Vector3(0, 4, -16);
+    }
+
+    private void OnDisable()
+    {
+        GameManager.LevelEnding -= () => playerGap += new Vector3(0, 4, -16);
     }
 }

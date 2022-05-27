@@ -12,9 +12,12 @@ public class GameManager : MonoBehaviour
     private Collider groundCollider;
     public float groundBoundaries;
 
+    public bool moneyMovement;
+
     public static GameManager instance;
     private void Awake()
     {
+        moneyMovement = true;
         instance = this;
 
         aSDisplay = GetComponent<AssetScoreDisplay>();

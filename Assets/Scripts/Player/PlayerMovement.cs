@@ -62,12 +62,10 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         GameManager.LevelEnding += () => playable = false;
-        GameManager.LevelEnding += () => transform.position = Vector3.forward * transform.position.z;
     }
 
     private void OnDisable()
     {
         GameManager.LevelEnding -= () => playable = false;
-        GameManager.LevelEnding -= () => transform.position = Vector3.forward * transform.position.z;
     }
 }

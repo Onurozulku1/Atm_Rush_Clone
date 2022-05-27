@@ -46,6 +46,7 @@ public class Collectable : MonoBehaviour
         
         if (other.gameObject.CompareTag("Finish") && isCollected)
         {
+            WalletManager.instance.storedMoney += stage + 1;
             finishTransform = other.transform;
             Finish();
         }
@@ -70,7 +71,7 @@ public class Collectable : MonoBehaviour
 
     private void EndingAnimation()
     {
-        if (finishTransform != null && gameEnding)
+        if (GameManager.instance.moneyMovement && finishTransform != null && gameEnding)
         {
             transform.Translate(20 * Time.deltaTime * Vector3.left);
         }

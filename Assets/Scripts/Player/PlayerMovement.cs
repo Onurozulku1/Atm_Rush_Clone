@@ -10,10 +10,6 @@ public class PlayerMovement : MonoBehaviour
 
     float posX;
     float posZ;
-    Vector3 movement;
-
-    Vector3 moveX;
-    Vector3 moveZ;
 
     bool playable = true;
 
@@ -29,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.CompareTag("Finish"))
         {
-            playable = false;
+            GameManager.LevelEnding?.Invoke();
         }
     }
 
@@ -61,5 +57,17 @@ public class PlayerMovement : MonoBehaviour
             clampedPosition.x = Mathf.Clamp(clampedPosition.x, -GameManager.instance.groundBoundaries, GameManager.instance.groundBoundaries);
             transform.position = clampedPosition;
         }
+    }
+
+    private void OnEnable()
+    {
+        GameManager.LevelEnding += () => playable = false;
+        GameManager.LevelEnding += () => transform.position = Vector3.forward * transform.position.z;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.LevelEnding -= () => playable = false;
+        GameManager.LevelEnding -= () => transform.position = Vector3.forward * transform.position.z;
     }
 }

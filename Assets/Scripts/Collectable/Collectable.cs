@@ -71,7 +71,7 @@ public class Collectable : MonoBehaviour
     {
         if (finishTransform != null && gameEnding)
         {
-            transform.Translate(Vector3.left * Time.deltaTime * 20);
+            transform.Translate(20 * Time.deltaTime * Vector3.left);
         }
     }
 }

@@ -27,10 +27,8 @@ public class AssetScoreDisplay : MonoBehaviour
             {
                 Destroy(item);
             }
-            player.Rotate(new Vector3(0, 180, 0));
-            player.position = new Vector3(0, player.position.y, player.position.z + 40);
-            
 
+            AdjustCharacter();
         }
     }
 
@@ -43,6 +41,13 @@ public class AssetScoreDisplay : MonoBehaviour
             go = Instantiate(moneyObject, new Vector3(100, 100, 100), Quaternion.identity);
             go.name = "scoreMoney" + i;
         }
+    }
+
+    private void AdjustCharacter()
+    {
+        player.Rotate(new Vector3(0, 180, 0));
+        player.position = new Vector3(0, player.position.y, player.position.z + 40);
+        playerAnim.SetTrigger("End");
     }
 
     private void OnDisable()

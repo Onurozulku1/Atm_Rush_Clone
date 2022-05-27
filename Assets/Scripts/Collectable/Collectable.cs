@@ -21,10 +21,12 @@ public class Collectable : MonoBehaviour
             
         }
     }
+
     private void Update()
     {
         EndingAnimation();
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Obstacle") && isCollected)
@@ -62,7 +64,6 @@ public class Collectable : MonoBehaviour
     private void Finish()
     {
         gameEnding = true;
-        WalletManager.instance.wallet.Remove(gameObject);
         transform.position = new Vector3(0, transform.position.y, finishTransform.position.z);
 
     }
@@ -73,5 +74,6 @@ public class Collectable : MonoBehaviour
         {
             transform.Translate(20 * Time.deltaTime * Vector3.left);
         }
+
     }
 }

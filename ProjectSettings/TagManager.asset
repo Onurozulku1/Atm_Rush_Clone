@@ -9,6 +9,7 @@ TagManager:
   - Obstacle
   - Upgrader
   - Bank
+  - Counter
   layers:
   - Default
   - TransparentFX
